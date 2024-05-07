@@ -813,3 +813,9 @@ variable "logging_log_group" {
   type        = string
   default     = null
 }
+
+variable "drift_ignore" {
+  description = "for terraform drift usage"
+  type        = bool
+  default     = false
+}

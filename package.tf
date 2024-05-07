@@ -1,3 +1,8 @@
+data "external" "drift_ignore" {
+  count   = var.drift_ignore ? 1 : 0
+  program = [local.python, "${path.module}/process_terraform_output.py"]
+}
+
 locals {
   python = (substr(pathexpand("~"), 0, 1) == "/") ? "python3" : "python.exe"
 }
@@ -61,7 +66,7 @@ resource "null_resource" "archive" {
 
   triggers = {
     filename  = data.external.archive_prepare[0].result.filename
-    timestamp = var.trigger_on_package_timestamp ? data.external.archive_prepare[0].result.timestamp : null
+    timestamp = var.drift_ignore ? data.external.drift_ignore[0].result.timestamp : var.trigger_on_package_timestamp ? data.external.archive_prepare[0].result.timestamp : null
   }
 
   provisioner "local-exec" {
