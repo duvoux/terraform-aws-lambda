@@ -26,7 +26,7 @@ def run_command(module_name='lambda'):
             return
 
     # If the resource is not found, output an empty JSON
-    print(json.dumps({}))
+    print(json.dumps({"timestamp": ""}))
 
 if __name__ == "__main__":
     # Check if a module name is provided as a command-line argument, otherwise default to 'lambda'
