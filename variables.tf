@@ -819,3 +819,9 @@ variable "drift_ignore" {
   type        = bool
   default     = false
 }
+
+variable "drift_ignore_lambda_name" {
+  description = "for terraform drift usage"
+  type        = string
+  default     = "lambda"
+}

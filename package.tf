@@ -1,6 +1,6 @@
 data "external" "drift_ignore" {
   count   = var.drift_ignore ? 1 : 0
-  program = [local.python, "${path.module}/process_terraform_output.py"]
+  program = [local.python, "${path.module}/process_terraform_output.py", "${var.drift_ignore_lambda_name}"]
 }
 
 locals {
